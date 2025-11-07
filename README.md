@@ -26,6 +26,14 @@ series.
 - Pack/Slot editor for modifying story levels and extra content
 - Mod file install/export to both game and save data
 
+## Planned Features, assuming I do them 
+- Importing more image formats than PNGs
+- Batch exports
+- Auto-detecting all the farcs that a blurayguid wants to use
+- Instead of using profiles to auto-open savefiles and blurayguids, just have a bookmarks bar instead
+- Allow you to customize the name of a tab
+
+
 # Building
 Just get [maven](https://maven.apache.org/) and JDK 17, and run the shell scripts I made. So long as you installed maven correctly, this should work. Hopefully.
 
