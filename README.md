@@ -1,3 +1,9 @@
+# Preface
+I am considering. **CONSIDERING.** Adding some qualityOfLife features to Tookit, so I forked it.
+Maybe this will end up being better. Maybe nothing will change.
+I s'pose we'll find out ¯\_(ツ)_/¯
+
+
 # Craftworld Toolkit
 
 ![Application](https://github.com/ennuo/toolkit/assets/67672427/b24a1bb0-eefc-4c5d-bc38-173e949e3154)
