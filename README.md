@@ -1,7 +1,9 @@
 # Preface
 I am considering. **CONSIDERING.** Adding some qualityOfLife features to Tookit, so I forked it.
+
 Maybe this will end up being better. Maybe nothing will change.
-I s'pose we'll find out ¯\_(ツ)_/¯
+
+I s'pose we'll find out ¯\\_(ツ)_/¯
 
 
 # Craftworld Toolkit
@@ -23,3 +25,10 @@ series.
 - Save editor, edit levels and items in your big profile
 - Pack/Slot editor for modifying story levels and extra content
 - Mod file install/export to both game and save data
+
+# Building
+Just get [maven](https://maven.apache.org/) and JDK 17, and run the shell scripts I made. So long as you installed maven correctly, this should work. Hopefully.
+
+The build should appear in `./toolkit/target/`.
+
+(Tested on Windows with maven 3.9.11, JDK 17, but it's one simple command so I **hope** that it's the same for other platforms.)

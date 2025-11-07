@@ -1,0 +1,1 @@
+mvn -B package --file pom.xml -P lwjgl-natives-macos-aarch64
