@@ -1,8 +1,10 @@
 package toolkit.windows;
 
+// Load configs
 import configurations.ApplicationFlags;
 import configurations.Config;
 import configurations.Profile;
+// Import what looks to be... 90% of cwlib, I guess.
 import cwlib.enums.*;
 import cwlib.ex.SerializationException;
 import cwlib.io.Serializable;
@@ -34,7 +36,11 @@ import cwlib.types.swing.FileModel;
 import cwlib.types.swing.FileNode;
 import cwlib.types.swing.SearchParameters;
 import cwlib.util.*;
+
+// Does UI, of course, but... TBD for now
 import executables.gfx.GfxGUI;
+
+
 import toolkit.functions.*;
 import toolkit.streams.CustomPrintStream;
 import toolkit.streams.TextAreaOutputStream;
@@ -48,9 +54,14 @@ import toolkit.windows.utilities.ArchiveSelector;
 import toolkit.windows.utilities.AssetExporter;
 import toolkit.windows.utilities.Compressinator;
 import toolkit.windows.utilities.Dependinator;
+
+// Hex editor stuffs.
+// According to VS Code, trying to view the definition says they had to... decompile it from a .class file? But, it does not tell me where it is???
+// Seeing as this thing downloads a hundred libs the first time you compile, I presume that this is one of them. But, why not tell me where it is???????
 import tv.porst.jhexview.JHexView;
 import tv.porst.jhexview.SimpleDataProvider;
 
+// Built-in libs; UI, I/O, and timestamps (but those are likely for console stuffs and little else)
 import javax.swing.*;
 import javax.swing.tree.TreePath;
 import java.awt.*;
@@ -65,6 +76,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+// Plus regex and hashmaps.
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
@@ -73,7 +85,7 @@ public class Toolkit extends javax.swing.JFrame
     public static Toolkit INSTANCE;
     private boolean isTreeRowSelected = false;
 
-    public Toolkit()
+    public Toolkit() // Creates a new instance of the app. From the looks of things, the program is built such that we only ever have one at a time.
     {
         /* Reset the state in case of a reboot. */
         ResourceSystem.reset();
@@ -84,11 +96,12 @@ public class Toolkit extends javax.swing.JFrame
         ResourceSystem.TreeSelectionListener = (tree) -> TreeSelectionListener.listener(tree);
 
         this.initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage()); //
 
         EasterEgg.initialize(this);
         this.disable3DView();
 
+        // So the idea is, if you click a cel in this.entryTable, it wil copy that to the clipboard.
         this.entryTable.getActionMap().put("copy", new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
