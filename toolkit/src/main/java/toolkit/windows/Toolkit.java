@@ -86,7 +86,10 @@ public class Toolkit extends javax.swing.JFrame
     public static Toolkit INSTANCE;
     private boolean isTreeRowSelected = false;
 
-    public Toolkit() // Creates a new instance of the app. From the looks of things, the program is built such that we only ever have one at a time.
+    /**
+     * Creates a new instance of the app. From the looks of things, we should only ever have one at a time.
+     */
+    public Toolkit()
     {
         /* Reset the state in case of a reboot. */
         ResourceSystem.reset();
@@ -757,7 +760,11 @@ public class Toolkit extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() { // Creates stuff for the UI
+    
+    /**
+     * Creates stuff for the UI.
+     */
+    private void initComponents() {
         entryContext = new javax.swing.JPopupMenu();
         changeResourceRevisionGroup = new javax.swing.JMenu();
         changeResourceRevisionLBP1Context = new javax.swing.JMenuItem();
