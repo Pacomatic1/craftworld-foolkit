@@ -80,6 +80,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
+
 public class Toolkit extends javax.swing.JFrame
 {
     public static Toolkit INSTANCE;
@@ -756,8 +757,7 @@ public class Toolkit extends javax.swing.JFrame
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+    private void initComponents() { // Creates stuff for the UI
         entryContext = new javax.swing.JPopupMenu();
         changeResourceRevisionGroup = new javax.swing.JMenu();
         changeResourceRevisionLBP1Context = new javax.swing.JMenuItem();
