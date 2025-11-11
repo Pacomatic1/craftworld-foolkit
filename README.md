@@ -28,13 +28,16 @@ First up, I want to understand what this thing is, mainly on account of me being
 I told you, don't get your hopes up.
 
 But, if I succeed, then I can go to the actual fun:
-- Importing more image formats than PNGs
-- Batch exports
-- Auto-detecting all the farcs that a blurayguid wants to use (probably recursive search current directory and all children 'till I get all the folders I want)
-- Instead of using profiles to auto-open savefiles and blurayguids, just have a bookmarks bar instead
-- Allow you to customize the name of a tab
-- An 'ez mod maker' that lets you make mods super easily. Import some files, give it a title and description, and get yourself a `.mod`. 
-Most of the stuff I want is qualty-of-life stuffs.
+- Importing more image formats than PNGs (imports. not exports.)
+- Batch exports/extracts
+- Better auto-detection of all the farcs that a blurayguid wants to use
+- Bookmarks bar for saves and blurayguids (all the stuff you get from profiles)
+- A 'simple mod creation wizard'. Import some files, give it a title and description, and get yourself a `.mod`. 
+If it was not immediately obvious, this is mostly for quality-of-life.
+
+As you can probably imagine, this is very buggy. The old Toolkit wasn't as buggy, but this stuff requires big changes so I'm 100% going to be adding a lot of bugs. If you still want to use it (*thank you~*) I recommend you back up your stuff first.
+
+Even if this wasn't buggy, back up your stuff first. Bugs notwithstanding, you can poretty easily corrupt stuff with this. So be careful!
 
 # Building
 Just get [maven](https://maven.apache.org/) and JDK 17, and run the shell scripts I made. So long as you installed maven correctly, this should work. Hopefully.

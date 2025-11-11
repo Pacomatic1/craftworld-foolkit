@@ -83,8 +83,8 @@ import java.util.regex.Pattern;
 
 public class Toolkit extends javax.swing.JFrame
 {
-    public static Toolkit INSTANCE;
-    private boolean isTreeRowSelected = false;
+    public static Toolkit INSTANCE; // INSTANCE is basically "this"
+    private boolean isTreeRowSelected = false; // Multi-select is gonna be terrifying  <:{
 
     /**
      * Creates a new instance of the app. From the looks of things, we should only ever have one at a time.
@@ -95,26 +95,28 @@ public class Toolkit extends javax.swing.JFrame
         ResourceSystem.reset();
         Toolkit.INSTANCE = this;
 
+        // I think of these as JS Event Listeners. Makes more sense to my leaky brain.
         ResourceSystem.TriggerWorkSpaceUpdate = () -> updateWorkspace();
         ResourceSystem.GetSelectedCaches = () -> getSelectedArchives();
         ResourceSystem.TreeSelectionListener = (tree) -> TreeSelectionListener.listener(tree);
 
-        this.initComponents();
-        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage()); //
+        this.initComponents(); 
+        this.setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
 
         EasterEgg.initialize(this);
-        this.disable3DView();
+        this.disable3DView(); // This will be re-enabled based on your configs. So, disable it, then re-enable it.
 
-        // So the idea is, if you click a cel in this.entryTable, it wil copy that to the clipboard.
-        this.entryTable.getActionMap().put("copy", new AbstractAction()
+        // So, from what I can gather, if you click a cel in the GUI Metadata Table and press the copy shortcut (CTRL/CMD + C), it wil copy that to the clipboard.
+        // TODO: Give us the option in a right-click menu. I would have never known that this was a feature without reading the source code, and that's bad design.
+        this.guiMetadataTable.getActionMap().put("copy", new AbstractAction()
         {
             public void actionPerformed(ActionEvent e)
             {
                 String copied = "";
-                for (int i = 0; i < entryTable.getSelectedRowCount(); ++i)
+                for (int i = 0; i < guiMetadataTable.getSelectedRowCount(); ++i)
                 {
-                    copied += String.valueOf(entryTable.getModel().getValueAt(entryTable.getSelectedRows()[i], 1));
-                    if (i + 1 != entryTable.getSelectedRowCount())
+                    copied += String.valueOf(guiMetadataTable.getModel().getValueAt(guiMetadataTable.getSelectedRows()[i], 1));
+                    if (i + 1 != guiMetadataTable.getSelectedRowCount())
                         copied += '\n';
                 }
                 StringSelection selection = new StringSelection(copied);
@@ -124,7 +126,14 @@ public class Toolkit extends javax.swing.JFrame
 
         });
 
+        // This progress bar is never used.
+        // It is made, disabled, and made invisible. Despite this, many other classes reference it.
+        // This is either a leftover of a previous build, or something important that I've yet to understand.
+        // TODO: Remove all references to it and see what happens
         this.progressBar.setVisible(false);
+
+
+
         this.fileDataTabs.addChangeListener(l ->
         {
             FileData database =
@@ -762,7 +771,7 @@ public class Toolkit extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     
     /**
-     * Creates stuff for the UI.
+     * Creates stuff for the UI. It's a LOT of variable declarations and restraint amd position setting, so it's just put in a one-off function for the sake of readability.
      */
     private void initComponents() {
         entryContext = new javax.swing.JPopupMenu();
@@ -837,7 +846,7 @@ public class Toolkit extends javax.swing.JFrame
         infoCardPanel = new javax.swing.JPanel();
         fileDataPane = new javax.swing.JSplitPane();
         tableContainer = new javax.swing.JScrollPane();
-        entryTable = new javax.swing.JTable();
+        guiMetadataTable = new javax.swing.JTable(); // This is for the 'metadata' table in the GUI; GUID, hash, revision, and so on.  
         entryModifiers = new javax.swing.JTabbedPane();
         dependencyTreeContainer = new javax.swing.JScrollPane();
         dependencyTree = new javax.swing.JTree();
@@ -1460,7 +1469,7 @@ public class Toolkit extends javax.swing.JFrame
         tableContainer.setMaximumSize(new java.awt.Dimension(452, 32767));
         tableContainer.setMinimumSize(new java.awt.Dimension(452, 6));
 
-        entryTable.setModel(new javax.swing.table.DefaultTableModel(
+        guiMetadataTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"Path", "N/A"},
                 {"Timestamp", "N/A"},
@@ -1483,11 +1492,11 @@ public class Toolkit extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
-        entryTable.getTableHeader().setReorderingAllowed(false);
-        tableContainer.setViewportView(entryTable);
-        if (entryTable.getColumnModel().getColumnCount() > 0) {
-            entryTable.getColumnModel().getColumn(0).setResizable(false);
-            entryTable.getColumnModel().getColumn(1).setResizable(false);
+        guiMetadataTable.getTableHeader().setReorderingAllowed(false);
+        tableContainer.setViewportView(guiMetadataTable);
+        if (guiMetadataTable.getColumnModel().getColumnCount() > 0) {
+            guiMetadataTable.getColumnModel().getColumn(0).setResizable(false);
+            guiMetadataTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         fileDataPane.setLeftComponent(tableContainer);
@@ -3601,6 +3610,12 @@ public class Toolkit extends javax.swing.JFrame
         }
     }
 
+    /**
+     * Loads an image into the viewport, of course.
+     * Just give it the plan and descriptor, and
+     * it will either generate a texture or pull one
+     * from the file.
+     */
     public void loadImage(ResourceDescriptor resource, RPlan item)
     {
         if (resource == null)
@@ -3637,13 +3652,13 @@ public class Toolkit extends javax.swing.JFrame
 
         if (entry == null)
         {
-            entryTable.setValueAt(node.getFilePath() + node.getName(), 0, 1);
+            guiMetadataTable.setValueAt(node.getFilePath() + node.getName(), 0, 1);
             for (int i = 1; i < 8; ++i)
-                entryTable.setValueAt("N/A", i, 1);
+                guiMetadataTable.setValueAt("N/A", i, 1);
             return;
         }
 
-        entryTable.setValueAt(entry.getPath(), 0, 1);
+        guiMetadataTable.setValueAt(entry.getPath(), 0, 1);
 
         String timestamp = "N/A";
         if (entry instanceof FileDBRow row)
@@ -3655,29 +3670,29 @@ public class Toolkit extends javax.swing.JFrame
                 timestamp = new Timestamp(item.details.dateAdded * 1000L).toString();
         }
 
-        entryTable.setValueAt(timestamp, 1, 1);
-        entryTable.setValueAt(entry.getSHA1(), 2, 1);
-        entryTable.setValueAt(entry.getSize(), 3, 1);
+        guiMetadataTable.setValueAt(timestamp, 1, 1);
+        guiMetadataTable.setValueAt(entry.getSHA1(), 2, 1);
+        guiMetadataTable.setValueAt(entry.getSize(), 3, 1);
 
         GUID guid = (GUID) entry.getKey();
         if (guid != null)
         {
-            entryTable.setValueAt(guid.toString(), 4, 1);
-            entryTable.setValueAt(Bytes.toHex((int) guid.getValue()), 5, 1);
-            entryTable.setValueAt(Bytes.toHex(Bytes.packULEB128(guid.getValue())), 6, 1);
+            guiMetadataTable.setValueAt(guid.toString(), 4, 1);
+            guiMetadataTable.setValueAt(Bytes.toHex((int) guid.getValue()), 5, 1);
+            guiMetadataTable.setValueAt(Bytes.toHex(Bytes.packULEB128(guid.getValue())), 6, 1);
         }
         else
         {
-            entryTable.setValueAt("N/A", 4, 1);
-            entryTable.setValueAt("N/A", 5, 1);
-            entryTable.setValueAt("N/A", 6, 1);
+            guiMetadataTable.setValueAt("N/A", 4, 1);
+            guiMetadataTable.setValueAt("N/A", 5, 1);
+            guiMetadataTable.setValueAt("N/A", 6, 1);
         }
 
         ResourceInfo info = entry.getInfo();
         if (info != null && info.getType() != ResourceType.INVALID && info.getRevision() != null)
-            entryTable.setValueAt(Bytes.toHex(info.getRevision().getHead()), 7, 1);
+            guiMetadataTable.setValueAt(Bytes.toHex(info.getRevision().getHead()), 7, 1);
         else
-            entryTable.setValueAt("N/A", 7, 1);
+            guiMetadataTable.setValueAt("N/A", 7, 1);
     }
 
     public void setHexEditor(byte[] bytes)
@@ -3764,7 +3779,7 @@ public class Toolkit extends javax.swing.JFrame
     private javax.swing.JMenuItem editProfileSlots;
     private javax.swing.JPopupMenu entryContext;
     public javax.swing.JTabbedPane entryModifiers;
-    public javax.swing.JTable entryTable;
+    public javax.swing.JTable guiMetadataTable;
     private javax.swing.JMenuItem exportAnimation;
     private javax.swing.JMenuItem exportAsBackup;
     private javax.swing.JMenuItem exportAsBackupGUID;

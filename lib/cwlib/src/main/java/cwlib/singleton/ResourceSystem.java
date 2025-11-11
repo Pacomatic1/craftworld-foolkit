@@ -37,13 +37,14 @@ public class ResourceSystem
 {
     // These are only temporarily here until, well, if, I
     // completely untangle this class from the GUI mode.
+    /* Whatever you say buddy TwT */
 
-    // Whatever you say buddy TwT
     public static Runnable TriggerWorkSpaceUpdate;
     public static Supplier<Fart[]> GetSelectedCaches;
     public static Consumer<JTree> TreeSelectionListener;
 
 
+    
     public static class ResourceLogLevel
     {
         public static final int NONE = 0;
@@ -164,6 +165,8 @@ public class ResourceSystem
         return null;
     }
 
+    // Passing a long into this just makes it GUID anyways.
+    // This feels like function overloading but stupid.
     public static FileEntry get(long guid)
     {
         return ResourceSystem.get(new GUID(guid));

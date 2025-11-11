@@ -5,6 +5,9 @@ import toolkit.windows.Toolkit;
 
 import java.util.HashMap;
 
+/*
+ * 
+ */
 public class EasterEgg
 {
     private static final HashMap<String, String> users = new HashMap<>()

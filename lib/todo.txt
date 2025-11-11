@@ -1,0 +1,40 @@
+CODEBASE STUFF
+- Understand the codebase. Comment stuff, change variable and object names to be more specific... 'make it make sense'.
+- Bug fixes if there are any, duh
+
+
+
+But, otherwise, what else?
+- The metadata table in the GUI should allow you to copy the cells more intuitively.
+  As of now, you can click the cell and then press CTRL+C, but we should make it such that:
+        - You do it in a right click menu
+        - Make them 'text edit fields that don't allow you to edit anything' so people can highlight the text inside and copy it there.
+
+- Importing more image formats than PNGs (imports. not exports. for exports, png is perfection)
+
+- Batch exports/extracts
+  Which means allowing the user to select multiple files in the file tree, and then giving the user a different set of options because you're hovering over many files rather than one.
+  For some asinine reason, the entire thing is hardcoded to only allow you to select one file.
+  So doing this will force me to refactor some stuffs :(
+
+- Better auto-detection of all the farcs that a blurayguid wants to use
+  Obviously we can't do this perfectly, but we can try. if a blurayguids.map doesn't already specify a location for the farc, try recursive searching. Ask the user in the configs first though.
+
+- Bookmarks bar
+  Profiles but less cluttered I guess. Gonna need some hefty UI work though!
+
+- Mod Creation Wizard
+  Want to make a simple mod, like a single sticker or music or IntMusic or sound or decoration or object or (non-shader) material?
+  Well, here ya go! I'll be a lot of work though (but really nice for the user. Less fiddling and tedium)
+
+- CONSIDER: Help Menus?
+  Like, help icons in each menu, as as to make things easier
+
+- CONSIDER: Translations?
+  I don't want to actually translate stuff, but I would not mind having the support for it, if nothing else.
+
+- 3D models in the viewport
+  Currently experimental and Windows-only, but you should finish it.
+  If not, at least have some way to generate a static preview of the object so the user known what the heck they're looking at?
+  This is especially crucial for models. For levels, just yoink the icon image and then use a level badge image for a mask; the user should (hopefully!) know what's what.
+  PS. We can export gltf, so if we, say, had a gltf-compatible 3D rendering library...
