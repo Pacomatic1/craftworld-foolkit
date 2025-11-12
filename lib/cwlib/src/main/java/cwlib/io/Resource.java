@@ -37,6 +37,8 @@ public interface Resource extends Serializable
     default void onStartSave(Revision revision)
     {
         // Using a default implementation since I'm not adding this to every resource right now.
+
+        /* Right now TwT */
     }
 
 }

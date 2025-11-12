@@ -231,7 +231,7 @@ public abstract class FileData
         return this.tree;
     }
 
-    public boolean hasChanges()
+    public boolean getHasChanges()
     {
         return this.hasChanges;
     }

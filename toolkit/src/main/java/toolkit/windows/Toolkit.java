@@ -294,7 +294,7 @@ public class Toolkit extends javax.swing.JFrame
     {
         for (FileData data : ResourceSystem.getDatabases())
         {
-            if (data.hasChanges())
+            if (data.getHasChanges())
             {
                 int result = JOptionPane.showConfirmDialog(null,
                     String.format("Your %s (%s) has pending changes, do you want to " +
@@ -334,7 +334,7 @@ public class Toolkit extends javax.swing.JFrame
         for (int i = 0; i < databases.size(); ++i)
         {
             FileData database = databases.get(i);
-            if (database.hasChanges())
+            if (database.getHasChanges())
                 fileDataTabs.setTitleAt(i, database.getName() + " *");
             else
                 fileDataTabs.setTitleAt(i, database.getName());
@@ -344,7 +344,7 @@ public class Toolkit extends javax.swing.JFrame
         if (database != null)
         {
             editMenu.setVisible(true);
-            saveMenu.setEnabled(database.hasChanges());
+            saveMenu.setEnabled(database.getHasChanges());
         }
         else
             editMenu.setVisible(false);

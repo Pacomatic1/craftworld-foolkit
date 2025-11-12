@@ -18,7 +18,7 @@ public class FileCallbacks
         System.out.println("Saving workspace...");
         if (database != null)
         {
-            if (database.hasChanges())
+            if (database.getHasChanges())
             {
                 System.out.println("Saving " + database.getType() + " at " + database.getFile());
                 database.save();
@@ -56,7 +56,7 @@ public class FileCallbacks
         int index = Toolkit.INSTANCE.fileDataTabs.getSelectedIndex();
 
         FileData database = ResourceSystem.getSelectedDatabase();
-        if (database.hasChanges())
+        if (database.getHasChanges())
         {
             int result = JOptionPane.showConfirmDialog(null, String.format("Your %s (%s) " +
                                                                            "has " +
